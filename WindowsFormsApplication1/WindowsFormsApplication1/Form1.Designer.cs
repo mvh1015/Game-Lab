@@ -29,17 +29,18 @@
         private void InitializeComponent()
         {
             this.listView1 = new System.Windows.Forms.ListView();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.columnHeader0 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.button1 = new System.Windows.Forms.Button();
             this.txtBoxName = new System.Windows.Forms.TextBox();
             this.txtBoxID = new System.Windows.Forms.TextBox();
             this.txtBoxItem = new System.Windows.Forms.TextBox();
+            this.deleteBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listView1
@@ -93,7 +94,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(971, 331);
+            this.button1.Location = new System.Drawing.Point(971, 293);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(168, 71);
             this.button1.TabIndex = 3;
@@ -123,11 +124,22 @@
             this.txtBoxItem.Size = new System.Drawing.Size(100, 20);
             this.txtBoxItem.TabIndex = 6;
             // 
+            // deleteBtn
+            // 
+            this.deleteBtn.Location = new System.Drawing.Point(971, 381);
+            this.deleteBtn.Name = "deleteBtn";
+            this.deleteBtn.Size = new System.Drawing.Size(168, 71);
+            this.deleteBtn.TabIndex = 7;
+            this.deleteBtn.Text = "Delete";
+            this.deleteBtn.UseVisualStyleBackColor = true;
+            this.deleteBtn.Click += new System.EventHandler(this.deleteBtn_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1207, 510);
+            this.Controls.Add(this.deleteBtn);
             this.Controls.Add(this.txtBoxItem);
             this.Controls.Add(this.txtBoxID);
             this.Controls.Add(this.txtBoxName);
@@ -154,6 +166,7 @@
         private System.Windows.Forms.TextBox txtBoxName;
         private System.Windows.Forms.TextBox txtBoxID;
         private System.Windows.Forms.TextBox txtBoxItem;
+        private System.Windows.Forms.Button deleteBtn;
     }
 }
 

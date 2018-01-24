@@ -27,46 +27,42 @@ namespace WindowsFormsApplication1
         int rowStart = 5;
 
         List<ListViewItem> currentlyRentedItemList = new List<ListViewItem>();
+        String spreadsheetId = "1Ox1qngNAtKSIkWHBaORz9HtyugXflEL9eclDLt09BWo";
+
+        GoogleCredential credentials;
+        SheetsService service;
 
         public Form1()
         {
             InitializeComponent();
 
-            LoadItems();
+            // Define request parameters.
+            
+            String range = "Winter 2018!A5:F";
+            credentials = GetCredentials();
+            LoadItems(range);
             
 
             
         }
 
-        private void LoadItems()
+        // Create Google Sheets API service.
+        private SheetsService CreateGoogleService()
         {
-            int numberOfColumns = 5;
-
-            GoogleCredential credential;
-
-            using (var stream =
-                new FileStream("client_secret.json", FileMode.Open, FileAccess.Read))
-            {
-                string credPath = System.Environment.GetFolderPath(
-                    System.Environment.SpecialFolder.Personal);
-                credPath = Path.Combine(credPath, ".credentials/sheets.googleapis.com-dotnet-quickstart.json");
-
-                credential = GoogleCredential.FromStream(stream).CreateScoped(Scopes);
-
-                Console.WriteLine("Credential file saved to: " + credPath);
-
-            }
-
-            // Create Google Sheets API service.
             var service = new SheetsService(new BaseClientService.Initializer()
             {
-                HttpClientInitializer = credential,
+                HttpClientInitializer = credentials,
                 ApplicationName = ApplicationName,
             });
 
-            // Define request parameters.
-            String spreadsheetId = "1Ox1qngNAtKSIkWHBaORz9HtyugXflEL9eclDLt09BWo";
-            String range = "Winter 2018!A5:F";
+            return service;
+        }
+
+        private void LoadItems(string range)
+        {
+            int numberOfColumns = 5;
+
+            var service = CreateGoogleService();
             SpreadsheetsResource.ValuesResource.GetRequest request =
                     service.Spreadsheets.Values.Get(spreadsheetId, range);
 
@@ -100,48 +96,14 @@ namespace WindowsFormsApplication1
 
         }
 
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            GoogleCredential credential;
 
-            using (var stream =
-                new FileStream("client_secret.json", FileMode.Open, FileAccess.Read))
-            {
-                string credPath = System.Environment.GetFolderPath(
-                    System.Environment.SpecialFolder.Personal);
-                credPath = Path.Combine(credPath, ".credentials/sheets.googleapis.com-dotnet-quickstart.json");
 
-                credential = GoogleCredential.FromStream(stream).CreateScoped(Scopes);
+            var service = CreateGoogleService();
 
-                Console.WriteLine("Credential file saved to: " + credPath);
-
-            }
-
-            // Create Google Sheets API service.
-            var service = new SheetsService(new BaseClientService.Initializer()
-            {
-                HttpClientInitializer = credential,
-                ApplicationName = ApplicationName,
-            });
-
-            
             // Define request parameters.
-            String spreadsheetId = "1Ox1qngNAtKSIkWHBaORz9HtyugXflEL9eclDLt09BWo";
             String range = "Winter 2018!A" + rowStart.ToString() + ":F";
             
             SpreadsheetsResource.ValuesResource.GetRequest request =
@@ -172,11 +134,67 @@ namespace WindowsFormsApplication1
             SpreadsheetsResource.ValuesResource.UpdateRequest update = service.Spreadsheets.Values.Update(valueRange, spreadsheetId, newRange);
             update.ValueInputOption = SpreadsheetsResource.ValuesResource.UpdateRequest.ValueInputOptionEnum.RAW;
             UpdateValuesResponse result2 = update.Execute();
+
+            SpreadsheetsResource.ValuesResource.BatchClearRequest delete = service.Spreadsheets.Values.BatchClear(valueRange, spreadsheetId);
         }
+
+        private GoogleCredential GetCredentials()
+        {
+            GoogleCredential credential;
+
+            using (var stream =
+                new FileStream("client_secret.json", FileMode.Open, FileAccess.Read))
+            {
+                string credPath = System.Environment.GetFolderPath(
+                    System.Environment.SpecialFolder.Personal);
+                credPath = Path.Combine(credPath, ".credentials/sheets.googleapis.com-dotnet-quickstart.json");
+
+                credential = GoogleCredential.FromStream(stream).CreateScoped(Scopes);
+
+                Console.WriteLine("Credential file saved to: " + credPath);
+
+            }
+            return credential;
+        }
+
+        private void deleteBtn_Click(object sender, EventArgs e)
+        {
+
+            var service = CreateGoogleService();
+
+            // Define request parameters.
+            String range = "Winter 2018!A" + (rowStart + listView1.SelectedItems[0].Index).ToString() + ":F";
+
+            
+
+
+            listView1.Items.Remove(listView1.SelectedItems[0]);
+        }
+
 
         private void txtBoxName_TextChanged(object sender, EventArgs e)
         {
 
         }
+
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        
     }
+
+
 }
