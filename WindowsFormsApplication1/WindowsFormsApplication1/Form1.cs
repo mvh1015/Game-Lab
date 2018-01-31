@@ -116,7 +116,7 @@ namespace WindowsFormsApplication1
 
             String newRange = "Winter 2018!A" + rowToInsert + ":F" + rowToInsert;
             
-            ValueRange valueRange = new ValueRange();
+            var valueRange = new ValueRange();
             valueRange.MajorDimension = "ROWS";//"ROWS";//COLUMNS
 
             var oblist = new List<object>() { txtBoxName.Text, "Michael Harrison", txtBoxID.Text, DateTime.Now.ToString("g"), "", txtBoxItem.Text };
@@ -135,7 +135,7 @@ namespace WindowsFormsApplication1
             update.ValueInputOption = SpreadsheetsResource.ValuesResource.UpdateRequest.ValueInputOptionEnum.RAW;
             UpdateValuesResponse result2 = update.Execute();
 
-            SpreadsheetsResource.ValuesResource.BatchClearRequest delete = service.Spreadsheets.Values.BatchClear(valueRange, spreadsheetId);
+            
         }
 
         private GoogleCredential GetCredentials()
@@ -165,10 +165,20 @@ namespace WindowsFormsApplication1
             // Define request parameters.
             String range = "Winter 2018!A" + (rowStart + listView1.SelectedItems[0].Index).ToString() + ":F";
 
-            
+            // The ranges to clear, in A1 notation.
+            List<string> ranges = new List<string>();  // TODO: Update placeholder value.
+            ranges.Add(range);
 
+            // TODO: Assign values to desired properties of `requestBody`:
+            BatchClearValuesRequest requestBody = new BatchClearValuesRequest();
+            requestBody.Ranges = ranges;
+
+            SpreadsheetsResource.ValuesResource.BatchClearRequest delete = service.Spreadsheets.Values.BatchClear(requestBody, spreadsheetId);
+            
+            BatchClearValuesResponse result2 = delete.Execute();
 
             listView1.Items.Remove(listView1.SelectedItems[0]);
+
         }
 
 
@@ -193,7 +203,28 @@ namespace WindowsFormsApplication1
 
         }
 
-        
+        private void returnBtn_Click(object sender, EventArgs e)
+        {
+            var service = CreateGoogleService();
+
+            // Define request parameters.
+            String range = "Winter 2018!E" + (rowStart + listView1.SelectedItems[0].Index).ToString();
+
+            var valueRange = new ValueRange();
+            valueRange.MajorDimension = "ROWS";//"ROWS";//COLUMNS
+
+            var oblist = new List<object>() { DateTime.Now.ToString("g") };
+
+            listView1.SelectedItems[0].SubItems[4].Text = DateTime.Now.ToString("g");
+
+            valueRange.Values = new List<IList<object>> { oblist };
+
+            
+
+            SpreadsheetsResource.ValuesResource.UpdateRequest update = service.Spreadsheets.Values.Update(valueRange, spreadsheetId, range);
+            update.ValueInputOption = SpreadsheetsResource.ValuesResource.UpdateRequest.ValueInputOptionEnum.RAW;
+            UpdateValuesResponse result2 = update.Execute();
+        }
     }
 
 

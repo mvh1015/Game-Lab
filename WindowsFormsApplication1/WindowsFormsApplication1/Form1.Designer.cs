@@ -41,6 +41,7 @@
             this.txtBoxID = new System.Windows.Forms.TextBox();
             this.txtBoxItem = new System.Windows.Forms.TextBox();
             this.deleteBtn = new System.Windows.Forms.Button();
+            this.returnBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listView1
@@ -94,11 +95,11 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(971, 293);
+            this.button1.Location = new System.Drawing.Point(897, 296);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(168, 71);
+            this.button1.Size = new System.Drawing.Size(117, 44);
             this.button1.TabIndex = 3;
-            this.button1.Text = "button1";
+            this.button1.Text = "Add";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -126,19 +127,30 @@
             // 
             // deleteBtn
             // 
-            this.deleteBtn.Location = new System.Drawing.Point(971, 381);
+            this.deleteBtn.Location = new System.Drawing.Point(897, 346);
             this.deleteBtn.Name = "deleteBtn";
-            this.deleteBtn.Size = new System.Drawing.Size(168, 71);
+            this.deleteBtn.Size = new System.Drawing.Size(117, 44);
             this.deleteBtn.TabIndex = 7;
             this.deleteBtn.Text = "Delete";
             this.deleteBtn.UseVisualStyleBackColor = true;
             this.deleteBtn.Click += new System.EventHandler(this.deleteBtn_Click);
+            // 
+            // returnBtn
+            // 
+            this.returnBtn.Location = new System.Drawing.Point(897, 396);
+            this.returnBtn.Name = "returnBtn";
+            this.returnBtn.Size = new System.Drawing.Size(117, 44);
+            this.returnBtn.TabIndex = 8;
+            this.returnBtn.Text = "Return";
+            this.returnBtn.UseVisualStyleBackColor = true;
+            this.returnBtn.Click += new System.EventHandler(this.returnBtn_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1207, 510);
+            this.Controls.Add(this.returnBtn);
             this.Controls.Add(this.deleteBtn);
             this.Controls.Add(this.txtBoxItem);
             this.Controls.Add(this.txtBoxID);
@@ -167,6 +179,7 @@
         private System.Windows.Forms.TextBox txtBoxID;
         private System.Windows.Forms.TextBox txtBoxItem;
         private System.Windows.Forms.Button deleteBtn;
+        private System.Windows.Forms.Button returnBtn;
     }
 }
 
