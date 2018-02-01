@@ -36,14 +36,33 @@ namespace WindowsFormsApplication1
         {
             InitializeComponent();
 
-            // Define request parameters.
+
+            /*listView1.FullRowSelect = true;
+            ListViewExtender extender = new ListViewExtender(listView1);
+            // extend 2nd column
+            ListViewButtonColumn buttonAction = new ListViewButtonColumn(4);
+            buttonAction.DrawIfEmpty = true;
+            buttonAction.Click += OnButtonActionClick;
+            buttonAction.FixedWidth = true;
+
+            extender.AddColumn(buttonAction);
+            */
             
+
+
+            // Define request parameters.
+
             String range = "Winter 2018!A5:F";
             credentials = GetCredentials();
             LoadItems(range);
             
 
             
+        }
+
+        private void OnButtonActionClick(object sender, ListViewColumnMouseEventArgs e)
+        {
+            MessageBox.Show(this, @"you clicked " + e.SubItem.Text);
         }
 
         // Create Google Sheets API service.
@@ -182,25 +201,31 @@ namespace WindowsFormsApplication1
         }
 
 
-        private void txtBoxName_TextChanged(object sender, EventArgs e)
-        {
 
-        }
-
-
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (listView1.SelectedItems.Count > 0)
+            {
+                if (listView1.SelectedItems[0].SubItems[4].Text == "")
+                {
+                    returnBtn.Enabled = true;
+                }
+                else
+                {
+                    returnBtn.Enabled = false;
+                }
 
+                deleteBtn.Enabled = true;
+
+            } else
+            {
+                deleteBtn.Enabled = false;
+                returnBtn.Enabled = false;
+            }
+            
+
+               
         }
 
         private void returnBtn_Click(object sender, EventArgs e)
@@ -224,6 +249,25 @@ namespace WindowsFormsApplication1
             SpreadsheetsResource.ValuesResource.UpdateRequest update = service.Spreadsheets.Values.Update(valueRange, spreadsheetId, range);
             update.ValueInputOption = SpreadsheetsResource.ValuesResource.UpdateRequest.ValueInputOptionEnum.RAW;
             UpdateValuesResponse result2 = update.Execute();
+
+            returnBtn.Enabled = false;
+        }
+
+
+        private void txtBoxName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 

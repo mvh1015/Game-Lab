@@ -95,7 +95,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(897, 296);
+            this.button1.Location = new System.Drawing.Point(295, 589);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(117, 44);
             this.button1.TabIndex = 3;
@@ -105,7 +105,7 @@
             // 
             // txtBoxName
             // 
-            this.txtBoxName.Location = new System.Drawing.Point(971, 188);
+            this.txtBoxName.Location = new System.Drawing.Point(295, 510);
             this.txtBoxName.Name = "txtBoxName";
             this.txtBoxName.Size = new System.Drawing.Size(100, 20);
             this.txtBoxName.TabIndex = 4;
@@ -113,21 +113,22 @@
             // 
             // txtBoxID
             // 
-            this.txtBoxID.Location = new System.Drawing.Point(971, 214);
+            this.txtBoxID.Location = new System.Drawing.Point(295, 536);
             this.txtBoxID.Name = "txtBoxID";
             this.txtBoxID.Size = new System.Drawing.Size(100, 20);
             this.txtBoxID.TabIndex = 5;
             // 
             // txtBoxItem
             // 
-            this.txtBoxItem.Location = new System.Drawing.Point(971, 240);
+            this.txtBoxItem.Location = new System.Drawing.Point(295, 562);
             this.txtBoxItem.Name = "txtBoxItem";
             this.txtBoxItem.Size = new System.Drawing.Size(100, 20);
             this.txtBoxItem.TabIndex = 6;
             // 
             // deleteBtn
             // 
-            this.deleteBtn.Location = new System.Drawing.Point(897, 346);
+            this.deleteBtn.Enabled = false;
+            this.deleteBtn.Location = new System.Drawing.Point(640, 497);
             this.deleteBtn.Name = "deleteBtn";
             this.deleteBtn.Size = new System.Drawing.Size(117, 44);
             this.deleteBtn.TabIndex = 7;
@@ -137,7 +138,8 @@
             // 
             // returnBtn
             // 
-            this.returnBtn.Location = new System.Drawing.Point(897, 396);
+            this.returnBtn.Enabled = false;
+            this.returnBtn.Location = new System.Drawing.Point(774, 497);
             this.returnBtn.Name = "returnBtn";
             this.returnBtn.Size = new System.Drawing.Size(117, 44);
             this.returnBtn.TabIndex = 8;
@@ -149,7 +151,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1207, 510);
+            this.ClientSize = new System.Drawing.Size(1161, 737);
             this.Controls.Add(this.returnBtn);
             this.Controls.Add(this.deleteBtn);
             this.Controls.Add(this.txtBoxItem);
