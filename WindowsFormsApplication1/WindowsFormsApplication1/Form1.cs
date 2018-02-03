@@ -154,6 +154,10 @@ namespace WindowsFormsApplication1
             update.ValueInputOption = SpreadsheetsResource.ValuesResource.UpdateRequest.ValueInputOptionEnum.RAW;
             UpdateValuesResponse result2 = update.Execute();
 
+            txtBoxName.Text = "";
+            txtBoxItem.Text = "";
+            txtBoxID.Text = "";
+
             
         }
 
@@ -198,6 +202,11 @@ namespace WindowsFormsApplication1
 
             listView1.Items.Remove(listView1.SelectedItems[0]);
 
+            returnBtn.Enabled = false;
+            returnBtn.Visible = false;
+            deleteBtn.Enabled = false;
+            deleteBtn.Visible = false;
+
         }
 
 
@@ -210,18 +219,23 @@ namespace WindowsFormsApplication1
                 if (listView1.SelectedItems[0].SubItems[4].Text == "")
                 {
                     returnBtn.Enabled = true;
+                    returnBtn.Visible = true;
                 }
                 else
                 {
                     returnBtn.Enabled = false;
+                    returnBtn.Visible = false;
                 }
 
                 deleteBtn.Enabled = true;
+                deleteBtn.Visible = true;
 
             } else
             {
                 deleteBtn.Enabled = false;
+                deleteBtn.Visible = false;
                 returnBtn.Enabled = false;
+                returnBtn.Visible = false;
             }
             
 
@@ -251,6 +265,9 @@ namespace WindowsFormsApplication1
             UpdateValuesResponse result2 = update.Execute();
 
             returnBtn.Enabled = false;
+            returnBtn.Visible = false;
+            deleteBtn.Enabled = false;
+            deleteBtn.Visible = false;
         }
 
 
@@ -266,6 +283,41 @@ namespace WindowsFormsApplication1
         }
 
         private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnLabEquipment_Click(object sender, EventArgs e)
+        {
+            btnLabEquipment.Enabled = false;
+
+            btnSignIn.Enabled = true;
+            listView1.Visible = true;
+            deleteBtn.Visible = true;
+            returnBtn.Visible = true;
+            button1.Visible = true;
+            txtBoxID.Visible = true;
+            txtBoxItem.Visible = true;
+            txtBoxName.Visible = true;
+            
+        }
+
+        private void btnSignIn_Click(object sender, EventArgs e)
+        {
+            btnSignIn.Enabled = false;
+            listView1.Visible = false;
+            deleteBtn.Visible = false;
+            returnBtn.Visible = false;
+            button1.Visible = false;
+            txtBoxID.Visible = false;
+            txtBoxItem.Visible = false;
+            txtBoxName.Visible = false;
+
+
+            btnLabEquipment.Enabled = true;
+        }
+
+        private void txtBoxID_TextChanged(object sender, EventArgs e)
         {
 
         }
